@@ -24,6 +24,7 @@ const Login = () => {
     let temp = [];
     console.log(globalState());
     try {
+      setLoading(true);
       clearTimeout(temp.shift);
       const user = await loginUser(email(), password());
       if (user.ok) {
@@ -31,13 +32,11 @@ const Login = () => {
         localStorage.setItem("token", data.data.token);
         setSuccessMessage(data.massage);
         setErrorMessage([]);
-        setLoading(true);
         console.log(globalState());
         setGlobalState({
           ...globalState(),
           loading: true,
         });
-        console.log(globalState());
         try {
           const user = await profileUser(localStorage.getItem("token"));
           if (user.ok) {

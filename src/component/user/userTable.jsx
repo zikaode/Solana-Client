@@ -358,9 +358,16 @@ const UserTable = () => {
                       </td>
                     </tr>
                   )}
-                </For>
+                </For>{" "}
               </tbody>
             </table>
+            {users.loading ? (
+              <div class="w-full text-center mt-2">LOADING...</div>
+            ) : users()?.[activeTab()].data.length > 0 ? (
+              ""
+            ) : (
+              <div class="w-full text-center mt-2">TIDAK ADA DATA</div>
+            )}
           </div>
           {users()?.[activeTab()].data.length > 0 && (
             <div class="flex justify-end mt-4">
