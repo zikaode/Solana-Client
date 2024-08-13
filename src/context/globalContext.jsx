@@ -4,10 +4,10 @@ const GlobalContext = createContext();
 
 export function GlobalProvider(props) {
   const [globalState, setGlobalState] = createSignal({
-    clienturl: "http://localhost:5173",
+    clienturl: "https://solana-client.vercel.app",
     serverurl: "https://evoting-server.vercel.app",
     user: null,
-    theme: "light",
+    theme: "dark",
     loading: true,
     route: null,
     function: null,
