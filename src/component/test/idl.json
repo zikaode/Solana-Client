@@ -1,0 +1,374 @@
+{
+    "version": "0.1.0",
+    "name": "election_program",
+    "instructions": [{
+        "name": "addUser",
+        "accounts": [{
+            "name": "user",
+            "isMut": true,
+            "isSigner": true
+        }, {
+            "name": "signer",
+            "isMut": true,
+            "isSigner": true
+        }, {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+        }],
+        "args": [{
+            "name": "nim",
+            "type": "string"
+        }, {
+            "name": "nama",
+            "type": "string"
+        }, {
+            "name": "email",
+            "type": "string"
+        }, {
+            "name": "prodi",
+            "type": "string"
+        }, {
+            "name": "jurusan",
+            "type": "string"
+        }, {
+            "name": "setAddress",
+            "type": {
+                "option": "bool"
+            }
+        }]
+    }, {
+        "name": "updateUserData",
+        "accounts": [{
+            "name": "user",
+            "isMut": true,
+            "isSigner": false
+        }, {
+            "name": "signer",
+            "isMut": false,
+            "isSigner": true
+        }],
+        "args": [{
+            "name": "nim",
+            "type": "string"
+        }, {
+            "name": "nama",
+            "type": "string"
+        }, {
+            "name": "email",
+            "type": "string"
+        }, {
+            "name": "prodi",
+            "type": "string"
+        }, {
+            "name": "jurusan",
+            "type": "string"
+        }]
+    }, {
+        "name": "addElection",
+        "accounts": [{
+            "name": "election",
+            "isMut": true,
+            "isSigner": true
+        }, {
+            "name": "admin",
+            "isMut": true,
+            "isSigner": true
+        }, {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+        }],
+        "args": [{
+            "name": "nama",
+            "type": "string"
+        }, {
+            "name": "whitelistStart",
+            "type": "i64"
+        }, {
+            "name": "whitelistEnd",
+            "type": "i64"
+        }, {
+            "name": "voteStart",
+            "type": "i64"
+        }, {
+            "name": "voteEnd",
+            "type": "i64"
+        }, {
+            "name": "organisasi",
+            "type": "string"
+        }, {
+            "name": "deskripsi",
+            "type": "string"
+        }]
+    }, {
+        "name": "changeSchedule",
+        "accounts": [{
+            "name": "election",
+            "isMut": true,
+            "isSigner": false
+        }, {
+            "name": "admin",
+            "isMut": false,
+            "isSigner": true
+        }],
+        "args": [{
+            "name": "whitelistStart",
+            "type": "i64"
+        }, {
+            "name": "whitelistEnd",
+            "type": "i64"
+        }, {
+            "name": "voteStart",
+            "type": "i64"
+        }, {
+            "name": "voteEnd",
+            "type": "i64"
+        }]
+    }, {
+        "name": "addWhitelist",
+        "accounts": [{
+            "name": "election",
+            "isMut": true,
+            "isSigner": false
+        }, {
+            "name": "admin",
+            "isMut": true,
+            "isSigner": true
+        }, {
+            "name": "userwallet",
+            "isMut": true,
+            "isSigner": false
+        }, {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+        }],
+        "args": []
+    }, {
+        "name": "addCandidate",
+        "accounts": [{
+            "name": "election",
+            "isMut": true,
+            "isSigner": false
+        }, {
+            "name": "admin",
+            "isMut": false,
+            "isSigner": true
+        }, {
+            "name": "ketuaAccount",
+            "isMut": false,
+            "isSigner": false,
+            "isOptional": true
+        }, {
+            "name": "wakilAccount",
+            "isMut": false,
+            "isSigner": false,
+            "isOptional": true
+        }],
+        "args": []
+    }, {
+        "name": "vote",
+        "accounts": [{
+            "name": "election",
+            "isMut": true,
+            "isSigner": false
+        }, {
+            "name": "voter",
+            "isMut": true,
+            "isSigner": true
+        }, {
+            "name": "suratSuara",
+            "isMut": true,
+            "isSigner": false
+        }, {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+        }],
+        "args": [{
+            "name": "candidateIndex",
+            "type": "u16"
+        }]
+    }, {
+        "name": "finalize",
+        "accounts": [{
+            "name": "election",
+            "isMut": true,
+            "isSigner": false
+        }, {
+            "name": "admin",
+            "isMut": false,
+            "isSigner": true
+        }],
+        "args": []
+    }],
+    "accounts": [{
+        "name": "Election",
+        "type": {
+            "kind": "struct",
+            "fields": [{
+                "name": "nama",
+                "type": "string"
+            }, {
+                "name": "whitelistStart",
+                "type": "i64"
+            }, {
+                "name": "whitelistEnd",
+                "type": "i64"
+            }, {
+                "name": "voteStart",
+                "type": "i64"
+            }, {
+                "name": "voteEnd",
+                "type": "i64"
+            }, {
+                "name": "whitelist",
+                "type": {
+                    "vec": "publicKey"
+                }
+            }, {
+                "name": "organisasi",
+                "type": "string"
+            }, {
+                "name": "candidate",
+                "type": {
+                    "vec": {
+                        "defined": "Candidate"
+                    }
+                }
+            }, {
+                "name": "votes",
+                "type": {
+                    "vec": "u32"
+                }
+            }, {
+                "name": "totalVotes",
+                "type": "u32"
+            }, {
+                "name": "deskripsi",
+                "type": "string"
+            }, {
+                "name": "winner",
+                "type": {
+                    "option": {
+                        "defined": "Candidate"
+                    }
+                }
+            }, {
+                "name": "statusSelesai",
+                "type": "bool"
+            }, {
+                "name": "admin",
+                "type": "publicKey"
+            }]
+        }
+    }, {
+        "name": "User",
+        "type": {
+            "kind": "struct",
+            "fields": [{
+                "name": "nim",
+                "type": "string"
+            }, {
+                "name": "nama",
+                "type": "string"
+            }, {
+                "name": "email",
+                "type": "string"
+            }, {
+                "name": "prodi",
+                "type": "string"
+            }, {
+                "name": "jurusan",
+                "type": "string"
+            }, {
+                "name": "address",
+                "type": {
+                    "option": "publicKey"
+                }
+            }]
+        }
+    }, {
+        "name": "SuratSuara",
+        "type": {
+            "kind": "struct",
+            "fields": [{
+                "name": "user",
+                "type": "publicKey"
+            }, {
+                "name": "candidate",
+                "type": {
+                    "defined": "Candidate"
+                }
+            }, {
+                "name": "election",
+                "type": "publicKey"
+            }, {
+                "name": "tanggal",
+                "type": "i64"
+            }, {
+                "name": "hasVoted",
+                "type": "bool"
+            }]
+        }
+    }],
+    "types": [{
+        "name": "Candidate",
+        "type": {
+            "kind": "struct",
+            "fields": [{
+                "name": "ketua",
+                "type": "publicKey"
+            }, {
+                "name": "wakil",
+                "type": "publicKey"
+            }]
+        }
+    }],
+    "errors": [{
+        "code": 6000,
+        "name": "UserNotWhitelisted",
+        "msg": "User is not whitelisted for this election"
+    }, {
+        "code": 6001,
+        "name": "VotingPeriodClosed",
+        "msg": "Voting period is closed"
+    }, {
+        "code": 6002,
+        "name": "WhitelistPeriodClosed",
+        "msg": "Whitelist period is closed"
+    }, {
+        "code": 6003,
+        "name": "InvalidCandidateIndex",
+        "msg": "Invalid candidate index"
+    }, {
+        "code": 6004,
+        "name": "Unauthorized",
+        "msg": "Unauthorized"
+    }, {
+        "code": 6005,
+        "name": "NoVotes",
+        "msg": "No votes cast"
+    }, {
+        "code": 6006,
+        "name": "ElectionFinalized",
+        "msg": "Election has been finalized"
+    }, {
+        "code": 6007,
+        "name": "InvalidCandidateAccounts",
+        "msg": "Invalid candidate accounts"
+    }, {
+        "code": 6008,
+        "name": "AlreadyVoted",
+        "msg": "User has already voted"
+    }, {
+        "code": 6009,
+        "name": "SameCandidateKeys",
+        "msg": "Ketua and Wakil must have different public keys"
+    }, {
+        "code": 6010,
+        "name": "ScheduleChangeNotAllowed",
+        "msg": "Schedule change is not allowed after vote_end has passed"
+    }]
+}

@@ -1,0 +1,98 @@
+{
+    "version": "0.1.0",
+    "name": "todo_app",
+    "metadata": {
+        "address": "9MU9jY1zUQGYfw6jw8m9VQwckrW5hpyk48ydEE1QHScG"
+    },
+    "instructions": [{
+        "name": "addTask",
+        "accounts": [{
+            "name": "owner",
+            "isMut": true,
+            "isSigner": true
+        }, {
+            "name": "userProfile",
+            "isMut": true,
+            "isSigner": false
+        }, {
+            "name": "todoAccount",
+            "isMut": true,
+            "isSigner": false
+        }, {
+            "name": "rent",
+            "isMut": false,
+            "isSigner": false
+        }, {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+        }],
+        "args": [{
+            "name": "todo",
+            "type": "string"
+        }]
+    }, {
+        "name": "initUserProfile",
+        "accounts": [{
+            "name": "owner",
+            "isMut": true,
+            "isSigner": true
+        }, {
+            "name": "userProfile",
+            "isMut": true,
+            "isSigner": false
+        }, {
+            "name": "rent",
+            "isMut": false,
+            "isSigner": false
+        }, {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+        }],
+        "args": []
+    }, {
+        "name": "markTaskAsDone",
+        "accounts": [{
+            "name": "owner",
+            "isMut": true,
+            "isSigner": true
+        }, {
+            "name": "todoAccount",
+            "isMut": true,
+            "isSigner": false
+        }],
+        "args": []
+    }],
+    "accounts": [{
+        "name": "TodoAccount",
+        "type": {
+            "kind": "struct",
+            "fields": [{
+                "name": "owner",
+                "type": "publicKey"
+            }, {
+                "name": "index",
+                "type": "u8"
+            }, {
+                "name": "todo",
+                "type": "string"
+            }, {
+                "name": "done",
+                "type": "bool"
+            }]
+        }
+    }, {
+        "name": "UserProfile",
+        "type": {
+            "kind": "struct",
+            "fields": [{
+                "name": "owner",
+                "type": "publicKey"
+            }, {
+                "name": "lastTodo",
+                "type": "u8"
+            }]
+        }
+    }]
+}
