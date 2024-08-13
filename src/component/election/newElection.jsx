@@ -80,7 +80,7 @@ function newElection() {
             <div class="container mx-auto p-4">
               <h1 class="font-semibold text-2xl text-center mt-2 relative">
                 <button
-                  class="absolute left-0"
+                  class={"absolute left-0"}
                   onClick={() => {
                     navigate("/election", { replace: true });
                   }}

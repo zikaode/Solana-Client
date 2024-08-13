@@ -28,6 +28,7 @@ export function ElectionForm({
   );
   const [showCandidateModal, setShowCandidateModal] = createSignal(false);
   const [showSaksiModal, setShowSaksiModal] = createSignal(false);
+  const [loading, setLoading] = createSignal(false);
 
   const addCandidate = (ketuaId, wakilId) => {
     setCandidates([...candidates(), { ketuaId, wakilId }]);
@@ -38,6 +39,7 @@ export function ElectionForm({
   };
 
   const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
     const data = {
       userData: { access: "ADMIN" },
@@ -76,6 +78,7 @@ export function ElectionForm({
     } catch (error) {
       console.error("Error:", error);
       onError();
+      setLoading(false);
     }
   };
 
@@ -285,7 +288,10 @@ export function ElectionForm({
           )}
         </div>
         <div class="flex justify-end">
-          <button type="submit" class="btn btn-success">
+          <button
+            type="submit"
+            class={"btn btn-success " + (loading() && "btn-loading")}
+          >
             {isUpdate ? "Update Pemilihan" : "Buat Pemilihan Baru"}
           </button>
         </div>

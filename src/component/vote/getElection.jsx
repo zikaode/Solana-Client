@@ -151,9 +151,7 @@ const Elections = () => {
                       <td>{new Date(election.updatedAt).toLocaleString()}</td>
                       <td>
                         <a
-                          href={`${globalState().clienturl}${
-                            location.pathname
-                          }/${election.id}`}
+                          href={`${location.pathname}/${election.id}`}
                           class="btn btn-success btn-sm"
                         >
                           Detail

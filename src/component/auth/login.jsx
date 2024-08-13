@@ -55,6 +55,7 @@ const Login = () => {
         } catch (error) {
           setGlobalState({ ...globalState(), loading: false });
           console.error("Error fetching profile:", error);
+          setLoading(false);
         } finally {
           navigate("/dashboard", { replace: true });
         }
@@ -70,6 +71,7 @@ const Login = () => {
         setErrorMessage([...errors]);
       }
     } catch (error) {
+      setLoading(false);
       temp.push(
         setTimeout(() => {
           setErrorMessage([]);

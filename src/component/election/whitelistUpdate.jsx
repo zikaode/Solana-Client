@@ -355,10 +355,12 @@ const whitelistUpdate = () => {
                   </For>
                 </tbody>
               </table>
-              {whitelists()?.data?.[activeTab()]?.data ? (
+              {whitelists.loading ? (
+                <div class="w-full text-center mt-2">LOADING...</div>
+              ) : whitelists()?.data?.[activeTab()]?.data.length > 0 ? (
                 ""
               ) : (
-                <h2 class="text-center mt-2">Tidak Ada Data</h2>
+                <div class="w-full text-center mt-2">TIDAK ADA DATA</div>
               )}
             </div>
             {whitelists()?.data?.[activeTab()]?.data?.length > 0 && (
