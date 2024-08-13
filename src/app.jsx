@@ -2,7 +2,7 @@ import { createEffect, createSignal, onMount } from "solid-js";
 import { useGlobalContext } from "./context/globalContext";
 import { Route, Router, useLocation } from "@solidjs/router";
 import { profileUser } from "./api/profile";
-import { PhantomWalletAdapter } from "@solana/wallet-adapter-wallets";
+import { CloverWalletAdapter } from "@solana/wallet-adapter-wallets";
 import {
   Connection,
   PublicKey,
@@ -46,10 +46,10 @@ const App = () => {
   );
 
   // Inisialisasi adapter wallet
-  const wallet = globalState()?.wallet || new PhantomWalletAdapter();
+  const wallet = globalState()?.wallet || new CloverWalletAdapter();
 
   async function connect() {
-    if ("solana" in window && window.solana.isPhantom) {
+    if ("solana" in window && typeof window.clover !== "undefined") {
       await wallet.connect();
       // Inisialisasi provider dan program Anchor
       const provider = new AnchorProvider(connection, wallet, {
@@ -70,7 +70,11 @@ const App = () => {
   }
 
   function handleInstall() {
-    window.open("https://phantom.app/", "_blank");
+    window.open(
+      "https://chromewebstore.google.com/detail/clv-wallet/nhnkbkgjikgcigadomkphalanndcapjk",
+      "_blank"
+    );
+    window.location.reload();
     setShowModal(false);
   }
 
@@ -118,12 +122,12 @@ const App = () => {
           <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-gray-800">
             <div class="mt-3 text-center">
               <h3 class="text-lg leading-6 font-medium text-white">
-                Phantom Wallet Tidak Terdeteksi
+                Ekstensi Wallet Tidak Terdeteksi
               </h3>
               <div class="mt-2 px-7 py-3">
                 <p class="text-sm text-gray-500">
-                  Ekstensi Phantom Wallet Dibutuhkan Untuk Melanjutkan
-                  Penggunaan Aplikasi. Ingin Menginstall?
+                  Ekstensi Clover Wallet Dibutuhkan Untuk Melanjutkan Penggunaan
+                  Aplikasi. Ingin Menginstall?
                 </p>
               </div>
               <div class="items-center px-4 py-3">
@@ -132,7 +136,7 @@ const App = () => {
                   class="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300"
                   onClick={handleInstall}
                 >
-                  Install Phantom Wallet
+                  Install Clover Wallet
                 </button>
                 <button
                   id="cancel-btn"
@@ -141,6 +145,9 @@ const App = () => {
                 >
                   Cancel
                 </button>
+                <div class="mt-2 text-xs">
+                  Harap Reload Halaman Ini Setelah Menginstall..
+                </div>
               </div>
             </div>
           </div>

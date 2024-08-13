@@ -86,7 +86,9 @@ const Elections = () => {
           </div>
 
           <div class="w-full overflow-auto flex flex-col gap-4">
-            {elections()?.data?.[activeTab()]?.data ? (
+            {elections.loading ? (
+              <div class="text-center">LOADING...</div>
+            ) : elections()?.data?.[activeTab()]?.data ? (
               <></>
             ) : (
               <div class="text-center">TIDAK ADA DATA</div>

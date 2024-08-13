@@ -53,7 +53,6 @@ const ElectionDetail = () => {
   };
 
   const whitelistHandle = async () => {
-    setLoading(true);
     if (!globalState()?.wallet) {
       setErrorMessage([{ msg: " Hubungkan Wallet Terlebih Dahulu.." }]);
       setTimeout(() => {
@@ -62,6 +61,7 @@ const ElectionDetail = () => {
       }, 2500);
       return;
     }
+    setLoading(true);
     // return;
     try {
       const res = await updateAddressUser(
@@ -170,6 +170,7 @@ const ElectionDetail = () => {
       }, 2000);
       return;
     }
+    setLoading(true);
     let user = null;
     const userAccount = web3.Keypair.generate();
     const connection = globalState().smartContractProgram.provider.connection;
@@ -317,6 +318,7 @@ const ElectionDetail = () => {
       ]);
       console.error(error);
     } finally {
+      setLoading(false);
       setTimeout(() => {
         setErrorMessage([]);
         setSuccessMessage("");
