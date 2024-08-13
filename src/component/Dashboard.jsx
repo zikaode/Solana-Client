@@ -119,8 +119,10 @@ const Dashboard = () => {
             </div>
           </div>
           <h2 class="font-semibold text-center mb-5">PEMILIHAN BERLANGSUNG</h2>
-          {!elections()?.data?.["ONGOING"] ? (
-            <h3 class="text-center text-sm">TIDAK ADA</h3>
+          {elections.loading ? (
+            <h3 class="text-center text-sm">LOADING ...</h3>
+          ) : !elections()?.data?.["ONGOING"] ? (
+            <h3 class="text-center text-sm">TIDAK ADA DATA!</h3>
           ) : (
             ""
           )}
@@ -129,7 +131,6 @@ const Dashboard = () => {
               <div class="card bg-slate-800 rounded mb-5 min-w-full relative">
                 <div class="py-2 px-5 flex justify-between items-center">
                   <div class="text-lg text-wrap">
-                    <span class="">{`${electionIndex() + 1}.`}</span>{" "}
                     {election?.name}{" "}
                     <span class="text-sm font-extralight">
                       ({election?.organization})
