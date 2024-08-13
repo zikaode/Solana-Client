@@ -27,6 +27,7 @@ const ElectionDetail = () => {
   const [globalState, setGlobalState] = useGlobalContext();
   const [successMessage, setSuccessMessage] = createSignal("");
   const [errorMessage, setErrorMessage] = createSignal([]);
+  const [loading, setLoading] = createSignal(false);
 
   const params = useParams();
   const token = localStorage.getItem("token") || "";
@@ -52,6 +53,7 @@ const ElectionDetail = () => {
   };
 
   const whitelistHandle = async () => {
+    setLoading(true);
     if (!globalState()?.wallet) {
       setErrorMessage([{ msg: " Hubungkan Wallet Terlebih Dahulu.." }]);
       setTimeout(() => {
@@ -97,6 +99,7 @@ const ElectionDetail = () => {
       setErrorMessage([{ msg: error.data?.errors[0]?.msg }]);
     } finally {
       refetch();
+      setLoading(false);
       setTimeout(() => {
         setErrorMessage([]);
         setSuccessMessage("");
@@ -684,7 +687,10 @@ const ElectionDetail = () => {
                           (x) => x.userId == globalState()?.user?.id
                         ) ? (
                         <button
-                          class="btn btn-primary py-8"
+                          class={
+                            "btn btn-primary py-8 " +
+                            (loading() && "btn-loading")
+                          }
                           disabled={!whitelistCountdown()[1]}
                           onClick={whitelistHandle}
                         >
