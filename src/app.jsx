@@ -42,14 +42,18 @@ const App = () => {
   const network = "https://api.devnet.solana.com"; // RPC-URL
   const connection = new Connection(network, "processed");
   const programId = new PublicKey(
-    "3m5x5J1XjYP1NTLUWKgYHYrMdfCCYbJHPrrnV7Urq3ie"
+    "AjqwTGRFRfqHBu3Vvb22yEhmSaBaqnfKu8Xb9BQjGWah"
   );
 
   // Inisialisasi adapter wallet
   const wallet = globalState()?.wallet || new CloverWalletAdapter();
 
   async function connect() {
-    if ("solana" in window && typeof window.clover !== "undefined") {
+    if (
+      "solana" in window &&
+      (typeof window.clover !== "undefined" ||
+        typeof window.clv !== "undefined")
+    ) {
       await wallet.connect();
       // Inisialisasi provider dan program Anchor
       const provider = new AnchorProvider(connection, wallet, {

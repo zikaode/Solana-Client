@@ -112,6 +112,7 @@ const ProfileEdit = () => {
       setSelectedProfile(e.target.files[0]);
     if (e.currentTarget.id == "foto-ktm") {
       setSelectedKTM(e.target.files[0]);
+      console.log(selectedProfile(), selectedKTM());
     }
   };
 
@@ -416,7 +417,6 @@ const ProfileEdit = () => {
                     onChange={handleFileChange}
                     class="input-file max-w-full"
                     id="foto-profile"
-                    value={selectedProfile()}
                   />
                   {/* <label class="form-label">
                   <span class="form-label-alt w-full text-end text-[10px]">
@@ -435,7 +435,6 @@ const ProfileEdit = () => {
                       onChange={handleFileChange}
                       class="input-file max-w-full"
                       id="foto-ktm"
-                      value={selectedKTM()}
                     />
                     <Show
                       when={!globalState().user?.profile?.imageKTM}
