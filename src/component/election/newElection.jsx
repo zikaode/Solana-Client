@@ -41,7 +41,7 @@ function newElection() {
   const navigate = useNavigate();
   const location = useLocation();
   const params = useParams();
-  const isUpdate = !!params.id;
+  const isUpdate = !params.id;
   const [globalState, setGlobalState] = useGlobalContext();
   const [users] = createResource(fetchUsers);
   const [electionDetails] = createResource(() =>

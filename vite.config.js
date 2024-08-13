@@ -104,6 +104,12 @@ export default defineConfig({
     // Whether to polyfill `node:` protocol imports.
     protocolImports: true,
   })],
+  optimizeDeps: {
+    include: ['@preline/select']
+  },
+  build: {
+    target: 'esnext',
+  },
   'process.env.ANCHOR_BROWSER': true
 })
 
