@@ -61,7 +61,7 @@ const Login = () => {
             navigate("/dashboard", { replace: true });
           }
           console.log(globalState());
-        }, 800);
+        }, 0);
       } else {
         temp.push(
           setTimeout(() => {
