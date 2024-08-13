@@ -2,7 +2,7 @@ import { createEffect, createSignal, onMount } from "solid-js";
 import { useGlobalContext } from "./context/globalContext";
 import { Route, Router, useLocation } from "@solidjs/router";
 import { profileUser } from "./api/profile";
-import { SolflareWalletAdapter } from "@solana/wallet-adapter-wallets";
+import { PhantomWalletAdapter } from "@solana/wallet-adapter-wallets";
 import {
   Connection,
   PublicKey,
@@ -46,7 +46,7 @@ const App = () => {
   );
 
   // Inisialisasi adapter wallet
-  const wallet = globalState()?.wallet || new SolflareWalletAdapter();
+  const wallet = globalState()?.wallet || new PhantomWalletAdapter();
 
   async function connect() {
     if ("solana" in window && window.solana.isPhantom) {
