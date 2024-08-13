@@ -164,6 +164,13 @@ const Elections = () => {
                 </For>
               </tbody>
             </table>
+            {elections.loading ? (
+              <div class="w-full text-center mt-2">LOADING...</div>
+            ) : elections()?.data?.[activeTab()]?.data.length > 0 ? (
+              ""
+            ) : (
+              <div class="w-full text-center mt-2">TIDAK ADA DATA</div>
+            )}
           </div>
           {elections()?.data?.[activeTab()]?.data.length > 0 && (
             <div class="flex justify-end mt-4">

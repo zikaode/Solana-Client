@@ -1,12 +1,13 @@
 import { createSignal, createEffect, onMount } from "solid-js";
+import Select from "@preline/select";
 
 export function CandidateModal({ users, selectedCandidatesProp, onClose }) {
   const [selectedKetua, setSelectedKetua] = createSignal("");
   const [selectedWakil, setSelectedWakil] = createSignal("");
   const [availableCandidate, setAvailableCandidate] = createSignal(users);
   const [availableWakil, setAvailableWakil] = createSignal(users);
-  const [selectKetua, setSelectKetua] = createSignal();
-  const [selectWakil, setSelectWakil] = createSignal();
+  // const [selectKetua, setSelectKetua] = createSignal();
+  // const [selectWakil, setSelectWakil] = createSignal();
 
   let selectRef = [];
 
@@ -43,14 +44,14 @@ export function CandidateModal({ users, selectedCandidatesProp, onClose }) {
       extraMarkup:
         '<div class="absolute top-1/2 end-3 -translate-y-1/2"><svg class="flex-shrink-0 size-3.5 text-black dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg></div>',
     };
-    new Select(selectRef[0], options);
-    new Select(selectRef[1], options);
+    // new Select(selectRef[0], options);
+    // new Select(selectRef[1], options);
   });
 
   createEffect(() => {
     if (selectedKetua()) {
       setAvailableWakil(
-        availableCandidate()?.filter((u) => u.id !== selectedKetua())
+        availableCandidate().filter((x) => x.id !== selectedKetua())
       );
       setSelectedWakil("");
     }
@@ -106,7 +107,7 @@ export function CandidateModal({ users, selectedCandidatesProp, onClose }) {
                 }}
               >
                 <option value="">Select Ketua</option>
-                {availableCandidate().map((user) => (
+                {availableCandidate()?.map((user) => (
                   <option value={user.id}>{user.name}</option>
                 ))}
               </select>
@@ -124,7 +125,7 @@ export function CandidateModal({ users, selectedCandidatesProp, onClose }) {
                 }}
               >
                 <option value="">Select Wakil</option>
-                {availableWakil().map((user) => (
+                {availableWakil()?.map((user) => (
                   <option value={user.id}>{user.name}</option>
                 ))}
               </select>
