@@ -1,5 +1,4 @@
 import { createSignal, createEffect, onMount } from "solid-js";
-import Select from "@preline/select";
 
 export function CandidateModal({ users, selectedCandidatesProp, onClose }) {
   const [selectedKetua, setSelectedKetua] = createSignal("");
@@ -44,8 +43,8 @@ export function CandidateModal({ users, selectedCandidatesProp, onClose }) {
       extraMarkup:
         '<div class="absolute top-1/2 end-3 -translate-y-1/2"><svg class="flex-shrink-0 size-3.5 text-black dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg></div>',
     };
-    setSelectKetua(new Select(selectRef[0], options));
-    setSelectWakil(new Select(selectRef[1], options));
+    new Select(selectRef[0], options);
+    new Select(selectRef[1], options);
   });
 
   createEffect(() => {
@@ -99,13 +98,11 @@ export function CandidateModal({ users, selectedCandidatesProp, onClose }) {
                 Ketua
               </label>
               <select
-                ref={selectRef[0]}
-                class="hidden"
                 id="ketua"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 value={selectedKetua()}
                 onChange={(e) => {
                   setSelectedKetua(e.target.value);
-                  selectKetua().close();
                 }}
               >
                 <option value="">Select Ketua</option>
@@ -119,13 +116,11 @@ export function CandidateModal({ users, selectedCandidatesProp, onClose }) {
                 Wakil
               </label>
               <select
-                ref={selectRef[1]}
                 id="wakil"
-                class="hidden"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 value={selectedWakil()}
                 onChange={(e) => {
                   setSelectedWakil(e.target.value);
-                  selectWakil().close();
                 }}
               >
                 <option value="">Select Wakil</option>
