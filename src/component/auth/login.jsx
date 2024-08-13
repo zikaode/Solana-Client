@@ -38,30 +38,28 @@ const Login = () => {
           loading: true,
         });
         console.log(globalState());
-        setTimeout(async () => {
-          try {
-            const user = await profileUser(localStorage.getItem("token"));
-            if (user.ok) {
-              const data = await user.json();
-              setGlobalState({
-                ...globalState(),
-                user: { ...data.data },
-                loading: false,
-              });
-            } else if (user.status === 401) {
-              const { errors } = await user.json();
-              setErrorMessage([...errors]);
-            }
-            console.log(globalState());
-            setGlobalState({ ...globalState(), loading: false });
-          } catch (error) {
-            setGlobalState({ ...globalState(), loading: false });
-            console.error("Error fetching profile:", error);
-          } finally {
-            navigate("/dashboard", { replace: true });
+        try {
+          const user = await profileUser(localStorage.getItem("token"));
+          if (user.ok) {
+            const data = await user.json();
+            setGlobalState({
+              ...globalState(),
+              user: { ...data.data },
+              loading: false,
+            });
+          } else if (user.status === 401) {
+            const { errors } = await user.json();
+            setErrorMessage([...errors]);
           }
           console.log(globalState());
-        }, 0);
+          setGlobalState({ ...globalState(), loading: false });
+        } catch (error) {
+          setGlobalState({ ...globalState(), loading: false });
+          console.error("Error fetching profile:", error);
+        } finally {
+          navigate("/dashboard", { replace: true });
+        }
+        console.log(globalState());
       } else {
         temp.push(
           setTimeout(() => {
