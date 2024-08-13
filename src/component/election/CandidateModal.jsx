@@ -6,6 +6,8 @@ export function CandidateModal({ users, selectedCandidatesProp, onClose }) {
   const [selectedWakil, setSelectedWakil] = createSignal("");
   const [availableCandidate, setAvailableCandidate] = createSignal(users);
   const [availableWakil, setAvailableWakil] = createSignal(users);
+  const [selectKetua, setSelectKetua] = createSignal();
+  const [selectWakil, setSelectWakil] = createSignal();
 
   let selectRef = [];
 
@@ -42,8 +44,8 @@ export function CandidateModal({ users, selectedCandidatesProp, onClose }) {
       extraMarkup:
         '<div class="absolute top-1/2 end-3 -translate-y-1/2"><svg class="flex-shrink-0 size-3.5 text-black dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg></div>',
     };
-    new Select(selectRef[0], options);
-    new Select(selectRef[1], options);
+    setSelectKetua(new Select(selectRef[0], options));
+    setSelectWakil(new Select(selectRef[1], options));
   });
 
   createEffect(() => {
@@ -101,7 +103,10 @@ export function CandidateModal({ users, selectedCandidatesProp, onClose }) {
                 class="hidden"
                 id="ketua"
                 value={selectedKetua()}
-                onChange={(e) => setSelectedKetua(e.target.value)}
+                onChange={(e) => {
+                  setSelectedKetua(e.target.value);
+                  selectKetua().close();
+                }}
               >
                 <option value="">Select Ketua</option>
                 {availableCandidate().map((user) => (
@@ -118,7 +123,10 @@ export function CandidateModal({ users, selectedCandidatesProp, onClose }) {
                 id="wakil"
                 class="hidden"
                 value={selectedWakil()}
-                onChange={(e) => setSelectedWakil(e.target.value)}
+                onChange={(e) => {
+                  setSelectedWakil(e.target.value);
+                  selectWakil().close();
+                }}
               >
                 <option value="">Select Wakil</option>
                 {availableWakil().map((user) => (
