@@ -771,16 +771,16 @@ const ElectionDetail = () => {
                               <img
                                 src={candidate.ketua.profile?.image}
                                 alt={candidate.ketua.name}
-                                class="object-cover rounded-md mb-4 mx-auto"
+                                class="object-cover rounded-md mb-4 mx-auto h-[28rem]"
                               />
                             </div>
                             <div>
                               <h2 class="font-bold">WAKIL</h2>
                               <h3 class="text-lg font-semibold">
-                                {candidate.ketua.name}
+                                {candidate.wakil.name}
                               </h3>
                               <h3 class="text-lg font-semibold">
-                                ({candidate.ketua.profile?.nim})
+                                ({candidate.wakil.profile?.nim})
                               </h3>
                               <p class="text-gray-400">
                                 {candidate.wakil.email}
@@ -797,7 +797,7 @@ const ElectionDetail = () => {
                               <img
                                 src={candidate.wakil.profile?.image}
                                 alt={candidate.wakil.name}
-                                class="object-cover rounded-md mb-4 mx-auto"
+                                class="object-cover rounded-md mb-4 mx-auto h-[28rem]"
                               />
                             </div>
                           </div>
