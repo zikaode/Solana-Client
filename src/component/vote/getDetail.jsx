@@ -502,9 +502,16 @@ const ElectionDetail = () => {
                       class="w-8 invert hover:bg-yellow-700 rounded-full"
                     />
                   </button>
-                  <h1 class="text-2xl font-bold underline underline-offset-2">
-                    {election().Data.name}
-                  </h1>
+                  <div>
+                    <h1 class="text-2xl font-bold underline underline-offset-2">
+                      {election().Data.name}
+                    </h1>
+                    <p class="w-full text-center text-base mt-2">
+                      {election().Data.organization
+                        ? election().Data.organization
+                        : "Not set"}
+                    </p>
+                  </div>
                   <p
                     class={`badge badge-xs p-2 text-center absolute right-0 ${
                       election().Data.Status === "FINISH"
@@ -744,8 +751,10 @@ const ElectionDetail = () => {
                             <div>
                               <h2 class="font-bold">KETUA</h2>
                               <h3 class="text-lg font-semibold">
-                                {candidate.ketua.name} (
-                                {candidate.ketua.profile?.nim})
+                                {candidate.ketua.name}
+                              </h3>
+                              <h3 class="text-lg font-semibold">
+                                ({candidate.ketua.profile?.nim})
                               </h3>
                               <p class="text-gray-400">
                                 {candidate.ketua.email}
@@ -767,10 +776,11 @@ const ElectionDetail = () => {
                             </div>
                             <div>
                               <h2 class="font-bold">WAKIL</h2>
-
                               <h3 class="text-lg font-semibold">
-                                {candidate.wakil.name} (
-                                {candidate.wakil.profile?.nim})
+                                {candidate.ketua.name}
+                              </h3>
+                              <h3 class="text-lg font-semibold">
+                                ({candidate.ketua.profile?.nim})
                               </h3>
                               <p class="text-gray-400">
                                 {candidate.wakil.email}
