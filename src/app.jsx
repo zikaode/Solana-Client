@@ -42,7 +42,7 @@ const App = () => {
   const network = "https://api.devnet.solana.com"; // RPC-URL
   const connection = new Connection(network, "processed");
   const programId = new PublicKey(
-    "AjqwTGRFRfqHBu3Vvb22yEhmSaBaqnfKu8Xb9BQjGWah"
+    "GbepvWJZF45kMNecYZ1NzmmYX6XziZmK7u2obvvUCDPr"
   );
 
   // Inisialisasi adapter wallet
@@ -93,7 +93,11 @@ const App = () => {
   }
 
   onMount(async () => {
-    if (localStorage.getItem("autoConnect")) connect();
+    if (localStorage.getItem("autoConnect")) {
+      setTimeout(() => {
+        connect();
+      }, 600);
+    }
     setGlobalState({ ...globalState(), loading: true });
     try {
       const user = await profileUser(localStorage.getItem("token"));

@@ -150,13 +150,13 @@ const Elections = () => {
                               </div>
                               <div class="flex items-end">
                                 <div class="text-xs">
-                                  {`${
+                                  {`${(
                                     (election.whitelists.filter(
                                       (x) => x.ballot?.voteId == candidate.id
                                     ).length /
                                       election.whitelists.length) *
                                     100
-                                  }% SUARA`}
+                                  ).toFixed(1)}% SUARA`}
                                 </div>
                               </div>
                             </div>
