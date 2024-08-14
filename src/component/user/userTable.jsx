@@ -338,23 +338,25 @@ const UserTable = () => {
                             </div>
                           </div>
                         </Show>
-                        <button
-                          type="button"
-                          class={
-                            "btn btn-xs " +
-                            (user?.profile?.publicKey != null &&
-                            user?.profile &&
-                            !user?.profile?.isTerminate
-                              ? "btn-success"
-                              : "btn-warning")
-                          }
-                          onClick={() => addUser(user, !user?.profile)}
-                          disabled={user?.profile?.publicKey}
-                        >
-                          {user?.profile?.publicKey
-                            ? "Telah Terdaftar"
-                            : "Daftar ke SmartContract"}
-                        </button>
+                        <Show when={user?.access == "CANDIDATE"}>
+                          <button
+                            type="button"
+                            class={
+                              "btn btn-xs " +
+                              (user?.profile?.publicKey != null &&
+                              user?.profile &&
+                              !user?.profile?.isTerminate
+                                ? "btn-success"
+                                : "btn-warning")
+                            }
+                            onClick={() => addUser(user, !user?.profile)}
+                            disabled={user?.profile?.publicKey}
+                          >
+                            {user?.profile?.publicKey
+                              ? "Telah Terdaftar"
+                              : "Daftar ke SmartContract"}
+                          </button>
+                        </Show>
                       </td>
                     </tr>
                   )}

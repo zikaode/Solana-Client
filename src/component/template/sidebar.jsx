@@ -17,7 +17,7 @@ const Sidebar = (props) => {
           <aside class="sidebar sidebar-mobile h-full justify-start max-sm:fixed max-sm:-translate-x-full bg-gray-900">
             <section class="sidebar-title justify-center items-center p-4">
               <div class="flex flex-col items-center">
-                <span class="text-lg font-semibold">
+                <span class="text-lg font-semibold text-center mb-2">
                   {globalState()?.user?.name}
                 </span>
                 <span class="text-xs font-normal text-content2">
