@@ -338,7 +338,7 @@ const UserTable = () => {
                             </div>
                           </div>
                         </Show>
-                        <Show when={user?.access == "CANDIDATE"}>
+                        <Show when={user?.access != "USER"}>
                           <button
                             type="button"
                             class={
