@@ -33,6 +33,7 @@ import newElection from "./component/election/newElection";
 import whitelistUpdate from "./component/election/whitelistUpdate";
 import getResult from "./component/result/getResult";
 import getDetailResult from "./component/result/getDetailResult";
+import TestPerformance from "./component/test/TestPerformance";
 
 const App = () => {
   const [globalState, setGlobalState] = useGlobalContext();
@@ -66,7 +67,9 @@ const App = () => {
         const program = new Program(idl, programId);
         setGlobalState({ ...globalState(), smartContractProgram: program });
         const accounts = await program.account.user.all();
-        console.log(accounts);
+        const suratSuara = await program.account.suratSuara.all();
+        setGlobalState({ ...globalState(), suratSuara: suratSuara });
+        console.log(accounts, suratSuara);
       }
     } else {
       setShowModal(true);
@@ -318,6 +321,7 @@ const App = () => {
           <Route path="/election/whitelist/:id" component={whitelistUpdate} />
           <Route path="/result" component={getResult} />
           <Route path="/result/:id" component={getDetailResult} />
+          <Route path="/test-performance" component={TestPerformance} />
         </Router>
         <footer class="bottom-0 z-20 w-full bg-slate-400 border-t border-gray-200 shadow items-center flex justify-center p-1 dark:bg-gray-800 dark:border-gray-600">
           <span class="text-xs text-gray-700 dark:text-gray-400 sm:text-center">

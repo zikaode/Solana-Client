@@ -14,6 +14,7 @@ export function GlobalProvider(props) {
     selectedElection: "",
     wallet: null,
     smartContractProgram: null,
+    suratSuara: null,
   });
 
   return (

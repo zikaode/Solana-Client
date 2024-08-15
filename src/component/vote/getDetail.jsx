@@ -209,6 +209,7 @@ const ElectionDetail = () => {
           })
           .signers([userAccount])
           .rpc();
+
         const data = await userInit(
           localStorage.getItem("token") || "",
           globalState().user.id,

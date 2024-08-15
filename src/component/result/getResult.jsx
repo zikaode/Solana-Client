@@ -121,14 +121,14 @@ const Elections = () => {
                                 {candidateIndex() + 1}
                               </div>
                               <div class="flex flex-col justify-center gap-2">
-                                <div class="avatar avatar-ring h-32 w-32">
+                                <div class="avatar avatar-ring h-32 w-32 object-contain">
                                   <img src={candidate.ketua.profile.image} />
                                 </div>
                                 <div class="text-center">
                                   {candidate.ketua.name}
                                 </div>
                               </div>
-                              <div class="flex flex-col justify-center gap-2">
+                              <div class="flex flex-col justify-center gap-2 object-top">
                                 <div class="avatar avatar-ring h-32 w-32">
                                   <img src={candidate.wakil.profile.image} />
                                 </div>
@@ -156,7 +156,7 @@ const Elections = () => {
                                     ).length /
                                       election.whitelists.length) *
                                     100
-                                  ).toFixed(1)}% SUARA`}
+                                  ).toFixed(1)}%`}
                                 </div>
                               </div>
                             </div>
