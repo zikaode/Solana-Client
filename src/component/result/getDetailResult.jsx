@@ -237,7 +237,7 @@ const getDetailResult = () => {
               </div>
               <div class="flex gap-2 mb-8">
                 <div class="w-1/2 flex justify-center items-center">
-                  <div class="w-8/12">
+                  <div class="w-6/12">
                     <canvas
                       id="electionResultsChart"
                       width="400"
@@ -251,7 +251,7 @@ const getDetailResult = () => {
                   </div>
                   <div class="flex gap-2 justify-center">
                     <div class="flex flex-col justify-center gap-2">
-                      <div class="w-44 rounded-lg bg-clip-padding object-contain">
+                      <div class="w-36 rounded-lg bg-clip-padding object-contain">
                         <img
                           src={
                             resultData()?.data?.candidates.filter(
@@ -276,7 +276,7 @@ const getDetailResult = () => {
                       </div>
                     </div>
                     <div class="flex flex-col justify-center gap-2">
-                      <div class="w-44 rounded-lg bg-clip-padding object-contain">
+                      <div class="w-36 rounded-lg bg-clip-padding object-contain">
                         <img
                           src={
                             resultData()?.data?.candidates.filter(
