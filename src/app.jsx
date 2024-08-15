@@ -43,7 +43,7 @@ const App = () => {
   const network = "https://api.devnet.solana.com"; // RPC-URL
   const connection = new Connection(network, "processed");
   const programId = new PublicKey(
-    "4TS9fZfFdyHtiuM6MyMpXupme4V8oc6YpHsVWoJScPuR"
+    "BJB8GXwGWyGzY6cEbMThanqJ8msvsmBV9W1UoiPeqrSF"
   );
 
   // Inisialisasi adapter wallet
